@@ -6,10 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/Cart";
+import { useState, useEffect } from "react";
 
 function Cart(product) {
+  const isIt = useSelector((state) => state.cart.isIt);
+
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(addToCart(product));
@@ -24,9 +27,11 @@ function Cart(product) {
         image={images[0]}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
-        </Typography>
+        <div className="text">
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+        </div>
         <Typography variant="body2" color="text.secondary">
           {discrption}
         </Typography>
